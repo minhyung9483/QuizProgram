@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>QuizProgram</title>
+  <link rel="stylesheet" href="./style2.css">
+  <!--css만 200줄 돌파하게 생겨서 분리-->
+  <style type="text/css"></style>
+  <script src="./Rect.js"></script>
+  <script src="./data.js"></script>
+  <script src="./common.js"></script>
+  <script type="text/javascript">
+
+    var stage;
+    var stageOuter;
+    var displayArea;
+    var positionCover;
+    var rect;
+    var question;
+    var bt_correct;
+    var bt_pass;
+
+    var timer;
+    var leftTime; //시간이 나오는곳
+	var totalsec
+    var sec = 0; //  타이머   시간바꾸면 181줄도 바꿔야함!!!
+    var min = 2;
+    var str;
+    var inputFlag = false;
+    var setSec = (sec + (min * 60)) * 8; //분*60초*8(셋이터벌 125이어서 )
+    //--------------------------------------
+    var bt_execute;
+    var bt_nextTeam;
+    var rankArry = [];
+    var scoreArray = [];
+    var score_area;
+    var score = 0;
+    var group = 0;
+    var team_area;
+    var myteam;
+    var flag = false; //실행여부를 결정짓는 놀리값
+    var onoff = false;
+    var st; //셋 인타발
+    var st2;
+    var g1, g2, g3, g4, g5, g6;
+    var s1, s2, s3, s4, s5, s6;
+    var gg = [];
+    var sg = [];
+
+    function init() {
+      document.body.style.height = window.height;
+
+      stage = document.getElementById("stage");
+      stageOuter = document.getElementById("stageOuter");
+      displayArea = document.getElementById("displayArea");
+      positionCover = document.getElementById("positionCover");
+      bt_correct =document.getElementById("bt_correct");
+      bt_pass =document.getElementById("bt_pass");
+      bt_execute = document.getElementById("bt_execute");
+     bt_nextTeam=document.getElementById("bt_nextTeam");
+      score_area = document.getElementById("score_area");
+      team_area = document.getElementById("team_area");
+      myteam = document.getElementById("myteam");
+      question = document.getElementById("question");
+      timer = document.getElementById("timer");
+      timer.style.position = "relative";
+      leftTime = document.getElementById("leftTime");
+      g1 = document.getElementById("g1");
+      s1 = document.getElementById("s1");
+      g2 = document.getElementById("g2");
+      s2 = document.getElementById("s2");
+      g3 = document.getElementById("g3");
+      s3 = document.getElementById("s3");
+      g4 = document.getElementById("g4");
+      s4 = document.getElementById("s4");
+      g5 = document.getElementById("g5");
+      s5 = document.getElementById("s5");
+      g6 = document.getElementById("g6");
+      s6 = document.getElementById("s6");
+      gg.push(g1); gg.push(g2); gg.push(g3); gg.push(g4); gg.push(g5); gg.push(g6);
+      sg.push(s1); sg.push(s2); sg.push(s3); sg.push(s4); sg.push(s5); sg.push(s6); //각 스팬을 반복문 돌리기 위해 배열에 넣어줌
+     
+      askQuestion();
+    
+    }
+
+    function createTimer() {
+      rect = new Rect(positionCover, setSec);
+    }
+
+    function decrease() {
+      if (setSec > 0) {
+        rect.move();
+        setSec--;
+      }
+    }
+
+    //시간을 처리하는 함수
+    function timeWatch() {
+      sec--;
+
+      if (sec < 0) {
+        min--;
+        sec = 59;
+      }
+      if (min <= 0 && sec <= 0) {
+        clearTimeout(st);
+        clearTimeout(st2);
+        min = 0;
+        sec = 0;
+        stage.style.color = "fff";
+        stage.innerText = "TIME OVER";
+        flag = !flag;
+        //시작 텍스트 출력
+        bt_execute.innerText = "Start";
+        bt_correct.disabled=true;
+        bt_pass.disabled=true;
+        bt_execute.disabled=true;
+        bt_nextTeam.disabled=false;
+
+        rankUpdate();
+      }
+      showTimeText();
+    }
+
+    function showTimeText() {
+      leftTime.innerText = getTimeString(min) + ":" + getTimeString(sec);
+    }
+
+    function pass() {
+      var r = getRandom(word.length);
+      stage.innerText = word[r];
+
+    }
+
+    function next() {
+      score += 10;
+      score_area.innerText = score + "점";
+      pass();
+    }
+
+    function rankUpdate() {
+      scoreArray = [group, score];
+      rankArry.push(scoreArray);
+      reorder();
+      for (var i = 0; i < rankArry.length; i++) {
+        gg[i].innerText = rankArry[i][0] + "조"; // 테이블에 순위 출력하기
+        sg[i].innerText = rankArry[i][1] + "점";
+      }
+    }
+
+    function reorder() {  //점수로 순위 비교
+      for (var i = 0; i < rankArry.length; i++) { // bubble 정렬
+        for (var j = rankArry.length - 1; j > i; j--) {
+          if (rankArry[j - 1][1] <= rankArry[j][1]) {
+            var temp = rankArry[j - 1];
+            rankArry[j - 1] = rankArry[j];
+            rankArry[j] = temp;
+          }
+        }
+      }
+    }
+
+    function execute() {
+      flag = !flag;
+      onoff = !onoff;
+      bt_nextTeam.disabled=true;
+      if (flag) {
+        st = setInterval("timeWatch()", 1000);
+        st2 = setInterval("decrease()", 125);
+        //멈춤상태 출력
+        bt_execute.innerText = "Pause";
+        bt_correct.disabled=false;
+        bt_pass.disabled=false;
+      }
+      else {
+        clearTimeout(st);
+        clearTimeout(st2);
+        //시작 텍스트 출력
+        bt_execute.innerText = "Start";
+        bt_correct.disabled=true;
+        bt_pass.disabled=true;
+      }
+
+      if (onoff) { pass(); }
+      else { stage.innerText = "PAUSE"; }
+    }
+
+    function nextTeam() {
+        if (myteam.value=="") {
+            alert("조를 입력하세요!!");
+            inputFlag = !inputFlag;
+        }
+      group = myteam.value;
+      
+
+      min = 2; //시작 분 초기화 !!! 시간바꾸면 여기도 바꿔야함!!
+      sec = totalsec;
+      showTimeText();
+      flag = false; //실행여부를 결정짓는 놀리값
+      onoff = false;
+      score = 0;
+      score_area.innerHTML = score + "점";
+      stage.innerText = "SPEED QUIZ";
+      team_area.innerText = group + "조"; //조 초기화
+
+      setSec = (sec + (min * 60)) * 8;
+      createTimer();
+      askQuestion();
+      myteam.value="";
+    }
+
+    function askQuestion() {
+      inputFlag = !inputFlag;
+      if (inputFlag) {
+        question.style.zIndex = 10;
+        displayArea.style.zIndex=-9;
+        stageOuter.style.zIndex=-9;
+      }
+      else {
+        question.style.zIndex = -9;
+        displayArea.style.zIndex=10;
+        stageOuter.style.zIndex=10;
+      }
+      bt_correct.disabled=true;
+        bt_pass.disabled=true;
+        bt_execute.disabled = false;
+        bt_pass.disabled = false;
+     
+    }
+
+
+
+      window.addEventListener("load", function () {
+        init();
+      });
+  </script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="question">
+      <h3>Quiz Game Setter</h3>
+      <input type="text" id="myteam" placeholder="몇조입니까?(숫자만 입력)"><br><br>
+      <button onclick="nextTeam()">입력완료</button>
+      <!--누르면조입력창이 나오고 입력후 확인 누르면 nextTeam()함수 호출-->
+      <!-- <button>퀴즈시작</button>-->
+    </div>
+    <div id="displayArea">
+      <div id="teamScore">
+        <p id="team_area">2조</p>
+        <p id="score_area">0점</p>
+      </div>
+      <div id="timer">
+        <span id="leftTime">02:00</span>
+        <span id="positionCover"></span>
+      </div>
+    </div>
+    <div id="stageOuter">
+      <div id="rankArea">
+        <ul>
+          <li class="titleRow">
+            <span>Rank</span>
+            <span>Team</span>
+            <span>Score</span>
+            <span>Time</span>
+          </li>
+          <li class="contentRow">
+            <span>1</span>
+            <span id="g1" >-</span>
+            <span id="s1">-</span>
+            <span>-</span>
+          </li>
+          <li class="contentRow">
+            <span>2</span>
+            <span id="g2">-</span>
+            <span id="s2">-</span>
+            <span>-</span>
+          </li>
+          <li class="contentRow">
+            <span>3</span>
+            <span id="g3">-</span>
+            <span id="s3">-</span>
+            <span>-</span>
+          </li>
+          <li class="contentRow">
+            <span>4</span>
+            <span id="g4">-</span>
+            <span id="s4">-</span>
+            <span>-</span>
+          </li>
+          <li class="contentRow">
+            <span>5</span>
+            <span id="g5">-</span>
+            <span id="s5">-</span>
+            <span>-</span>
+          </li>
+          <li class="contentRow">
+            <span>6</span>
+            <span id="g6">-</span>
+            <span id="s6">-</span>
+            <span>-</span>
+          </li>
+        </ul>
+      </div>
+      <div id="stage"></div>
+      <div id="controls">
+        <button onclick="next()" id="bt_correct">Correct</button>
+        <!--
+     --><button onclick="pass()" id="bt_pass">Pass</button>
+        <!--
+     --><button onclick="execute()" id="bt_execute">Start</button>
+        <button onclick="askQuestion()" id="bt_nextTeam">Next Team</button>
+      </div>
+    </div>
+    <div id="full"></div>
+    <!--모달효과 커버용-->
+  </div>
+  <!--여기까지 wrapper-->
+</body>
+
+</html>

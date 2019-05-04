@@ -1,0 +1,333 @@
+/*본연의 마진꺼져,본연의 패딩꺼져,보더합쳐*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*모달 효과를 위한 full size cover깔기 시작*/
+#full {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    /* z-index:9; */
+    z-index: -10;
+}
+/*모달 효과를 위한 full size cover깔기 끄읕*/
+
+
+#wrapper {
+    width: 100%;
+    /* height: 755px; */
+    height: 100%;
+    background: #000;
+    /* background-color:rgba(30,144,255,0.9);*/
+    background-image: url("./bg1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+/*
+  #e9967a ::lightblue
+
+  hotpink
+
+  antiquewhite
+
+
+*/
+
+
+
+/* question 영역 스타일 시작*/
+#question {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    margin-left: -200px;
+    margin-top: -300px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+    #question h3 {
+        width: 100%;
+        height: 60px;
+        color: #fff;
+        text-align: center;
+        line-height: 50px;
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+        #question h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            margin: 0 auto;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+#myteam { /*이게 조 입력창*/
+    text-align: center;
+    width: 100%;
+    font-size: 15px;
+}
+
+#question button,
+.quiz {
+    display: block;
+    width: 100%;
+    height: 30px;
+    border: none;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+
+
+#question button {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    /* 얘까지 주면 question 영역 마우스호버 스윽효과 */
+}
+
+
+    #question button:hover { /* question 영역 마우스호버쇽효과 얘만 하면 툭*/
+        background-color: #fff;
+        color: black;
+    }
+/* question 영역 스타일 끄읕*/
+
+/* displayArea 스타일 시작 */
+#displayArea {
+    width: 100%;
+    height: 204px;
+    padding: 5px;
+    overflow: hidden;
+    border: 3px solid black;
+    border-radius: 10px;
+    position: relative;
+}
+
+    #displayArea:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+/*teamScore영역과 timer영역 공통 css*/
+#teamScore,
+#timer {
+    float: left;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+/*좌측 teamScore*/
+#teamScore {
+    /* padding:5px 0 5px 5px; */
+    border-right: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+    #teamScore p {
+        float: left;
+        height: 100%;
+        text-align: center;
+        font-size: 100px;
+        line-height: 160px;
+        text-align: center;
+        color: #fff;
+        text-shadow: 2px 2px 8px #223d4b;
+    }
+
+#team_area {
+    width: 39.5%;
+    border-right: 3px solid black;
+}
+
+#score_area {
+    width: 60.5%;
+}
+
+/* 우측 타이머 */
+#timer {
+    border: 3px solid black;
+    border-radius: 15px; /*타이머 테두리 */
+    /*border-bottom-right-radius:10px;*/
+    position: relative;
+}
+
+    #timer span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+#leftTime {
+    background-color: transparent;
+    color: white;
+    text-shadow: 2px 2px 8px #223d4b;
+    font-size: 120px;
+    line-height: 164px;
+    font-weight: 700;
+    text-align: center;
+    z-index: 8;
+}
+
+/*막대기 나올 부분*/
+#positionCover {
+    /* background-color:#ff0055;
+   background-color:lightblue;*/
+    background-color: transparent;
+}
+
+/* stage 바깥영역 스타일 시작*/
+#stageOuter {
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+    border: 3px solid black;
+    border-radius: 10px;
+    position: relative; /*controls의 absolute제어용*/
+}
+
+#rankArea, #stage {
+    float: left;
+    height: 100%;
+}
+
+#rankArea {
+    width: 20%;
+    padding: 30px 10px;
+    overflow: hidden;
+    border-right: 3px solid black;
+}
+
+    #rankArea ul {
+        width: 100%;
+        height: 100%;
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+    }
+
+        #rankArea ul li {
+            width: 100%;
+            height: 65px;
+            line-height: 65px;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+            #rankArea ul li:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+
+            #rankArea ul li.titleRow {
+                height: 80px;
+                border-bottom: 2px solid black;
+            }
+
+            #rankArea ul li:nth-child(2), #rankArea ul li:nth-child(3) {
+                background-color: rgba(0,0,0,0.7);
+            }
+
+.contentRow {
+    border-bottom: 1px dotted #ccc;
+}
+
+    .contentRow:last-child {
+        border-bottom: none;
+    }
+
+#rankArea ul li span {
+    display: block;
+    /* width:70.75px; */
+    width: 33%;
+    float: left;
+    color: #fff;
+    text-shadow: 2px 2px 8px #223d4b;
+    margin-top: 5px;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 900;
+}
+
+#stage {
+    width: 80%;
+    height: 100%;
+    color: #fff;
+    text-shadow: 2px 2px 8px #223d4b;
+    text-align: center;
+    line-height: 460px;
+    font-size: 200px;
+    font-weight: 900;
+}
+
+#controls {
+    width: 70%;
+    height: 100px;
+    padding: 15px 0;
+    background-color: transparent;
+    position: fixed;
+    right: 5%;
+    bottom: 30px;
+    border-radius: 10px;
+    border: 3px solid #000;
+}
+
+    #controls button {
+        display: inline-block;
+        width: 21%;
+        margin-left: 2.5%;
+        height: 70px;
+        background-color: transparent;
+        border: none;
+        border: 1px solid black;
+        border-radius: 5px;
+        color: #fff;
+        text-shadow: 2px 2px 8px #223d4b;
+        font-size: 40px;
+        transition: all .3s ease-in-out;
+    }
+
+        #controls button:hover {
+            background-color: rgba(0,0,0,0.7);
+            color: #fff;
+        }
+/* stage 바깥영역 스타일 끄읕*/
+
+
+/* 뭔가 숨기고 싶은 녀석에게 주는 스타일덩어리 -9999로 날려버렷*/
+/*
+   display:none은 브라우저 리더기도 못읽지만,
+   밑의 스타일은 브라우저에서 안보이되 리더기는 읽어서
+   시각장애인도 그 요소가 어떤 요소인지 들을 수는 있음
+*/
+/* .hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  left: -9999px;
+  top: -9999px;
+  line-height: 0;
+  overflow: hidden;
+} */
+/* 뭔가 숨기고 싶은 녀석에게 주는 스타일덩어리*/
+사진
