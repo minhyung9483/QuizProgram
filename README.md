@@ -16,23 +16,22 @@
 			<td>
 				<ul>
 					<li>SpeedQuiz 시작 화면</li>
-					<ol>
-						<li>Start Button Click 시 게임 진행 화면으로 넘어감</li>
+					<ol type="A">
+						<li>조 번호을 입력하고 '입력완료' 버튼을 눌러 게임을 시작</li>
 					</ol>
 				</ul>
 			</td>
 		</tr>
 		<tr>
 			<td><img
-				src="https://postfiles.pstatic.net/MjAxOTA1MTFfMTQx/MDAxNTU3NTY1ODMyODk3.ElgWVLXnmqbzr93TLYcXvb4QcOQlGuyoMCFnQGfl8GQg.j5EsNO4t8-RqL1KM7pl0fHCxu4kBBE7d--CxTtZjCWEg.PNG.soccerson/2.png?type=w773"
+				src="https://postfiles.pstatic.net/MjAxOTA1MTFfMTU5/MDAxNTU3NTY3NjM5MzU5.6P7yzGCWplfXOCnNV3QA6Cqc7ZBEKTdbHnXp-1XiB2Ag.01HPAz9Pnq6jPZXZLpI1shnN1D7FKxtiroRN1nS9YmEg.PNG.soccerson/2.png?type=w773"
 				width="350px" /></td>
 			<td>
 				<ul>
-					<li>SpeedQui 게임 화면</li>
+					<li>SpeedQuiz 게임 화면</li>
 					<ol>
-						<li>조 추첨 Button 을 눌러 참여할 Team 개수를 입력</li>
-						<li>입력받은 수의 범위에서 난수 출력하여 게임을 진행할 조를 추출</li>
-						<li>게임을 진행할때 조 추첨을 하지 않으면 게임이 진행 될 수 없음</li>
+						<li>입력한 조의 차례로 게임을 진행</li>
+						<li>'Start' 버튼을 눌러 게임 시작</li>
 					</ol>
 				</ul>
 			</td>
@@ -45,44 +44,16 @@
 				<ul>
 					<li>게임 진행 화면</li>
 					<ol>
-						<li>게임이 시작되면 타이머가 가동된다, 타이머의 시간은 Code 내에서 수정이 가능하다</li>
-						<li>문제를 맞힐시 다음(정답) Button 을 누른다. Score 는 10점씩 증가한다.</li>
-						<li>정답 처리된 문제는 다시 출제되지 않는다.</li>
-						<li>Pass Button 을 누를시 Score 는 증가하지 않으며 문제가 넘어간다</li>
+						<li>게임이 시작되면 타이머가 가동된다, 타이머의 시간은 코드 내에서 수정이 가능</li>
+						<li>타이머가 줄어들면서 남은 시간에 맞춰 타이머 배경도 줄어든다</li>
+						<li>남은 시간이 10초 이하면 배경이 깜박거린다</li>
+						<li>문제는 배열에 입력해 놓으면 랜덤으로 출제된다</li>
+						<li>문제를 맞힐시 'Correct'(정답) 버튼을 누르면 점수가 10점씩 증가한다</li>
+						<li>정답 처리된 문제는 다시 출제되지 않는다</li>
+						<li>'Pass' 버튼을 누르면 점수가 증가하지 않으며 문제가 넘어간다</li>
+						<li>'Pause' 버튼을 누르면 문제가 가려지면서 타이머가 중지된다</li>
+						<li>'Next Team' 버튼은 비활성화 돼있으며 타이머가 종료되면 활성화 된다</li>
 					</ol>
-					<br>
-					<table>
-						<tr>
-							<td>▶ 시간 초과 경고화면</td>
-						</tr>
-						<tr>
-							<td><img
-								src="https://blogfiles.pstatic.net/MjAxOTA1MDdfMTg5/MDAxNTU3MjE1NTMwNDk2.CJRqh90cjNtNjd97TCPXrPWPOSOeJeWAxxMcV2DAbR4g.d15sivBul78yjLGhm9PeR1Mjx07OPx-M9DCp6Hs914og.PNG.phh_92/%EC%8B%9C%EA%B0%84%EC%B4%88%EA%B3%BC_%EA%B2%BD%EA%B3%A0_%ED%9A%A8%EA%B3%BC.png?type=w2"
-								width="250px" /></td>
-						</tr>
-						<tr>
-							<td>
-								<ol>
-									<li>시간이 10초 이하로 남게 된다면 위 이미지와 같이 화면이 붉은색으로 깜빡이게된다.</li>
-								</ol>
-							</td>
-						</tr>
-						<tr>
-							<td>▶ 시간 초과 화면</td>
-						</tr>
-						<tr>
-							<td><img
-								src="https://blogfiles.pstatic.net/MjAxOTA1MDdfMjQ0/MDAxNTU3MjE1NTI5MDEw.wDrTxAUE-8uLWBQM3XOFF64Aj-9MwDbwmoDL5AgLSzYg.7vNTZ25_hqWPrHxnQllNnAzjW71WZIVv_pKqq6o55yIg.PNG.phh_92/Timeover_%ED%99%94%EB%A9%B4.png?type=w2"
-								width="250px" /></td>
-						</tr>
-						<tr>
-							<td>
-								<ol>
-									<li>시간이 초과되면 위 이미지와 같이 해골 이미지가 화면을 돌아다니는 효과가 나타난다.</li>
-								</ol>
-							</td>
-						</tr>
-					</table>
 				</ul>
 			</td>
 		</tr>
