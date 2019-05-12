@@ -1,7 +1,6 @@
-<h1>QuizProgram Project</h1>
+<h1>QuizProgram</h1>
 	<ul>
 		<li>개발기간 : 2018-12-17 ~ 2018-12-20 (4일)</li>
-		<li>인원 : 5명</li>
 		<li>개발환경 : JavaSript, EditPlus</li>
 	</ul>
 	<table>
