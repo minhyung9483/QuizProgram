@@ -16,7 +16,7 @@
 			<td>
 				<ul>
 					<li>SpeedQuiz 시작 화면</li>
-					<ol type="A">
+					<ol type="1">
 						<li>조 번호을 입력하고 '입력완료' 버튼을 눌러 게임을 시작</li>
 					</ol>
 				</ul>
@@ -29,7 +29,7 @@
 			<td>
 				<ul>
 					<li>SpeedQuiz 게임 화면</li>
-					<ol>
+					<ol type="1">
 						<li>입력한 조의 차례로 게임을 진행</li>
 						<li>'Start' 버튼을 눌러 게임 시작</li>
 					</ol>
@@ -43,8 +43,8 @@
 			<td>
 				<ul>
 					<li>게임 진행 화면</li>
-					<ol>
-						<li>게임이 시작되면 타이머가 가동된다, 타이머의 시간은 코드 내에서 수정이 가능</li>
+					<ol type="1">
+						<li>게임이 시작되면 타이머가 가동된다, 타이머의 시간은 코드 내에서 수정이 가능하다</li>
 						<li>타이머가 줄어들면서 남은 시간에 맞춰 타이머 배경도 줄어든다</li>
 						<li>남은 시간이 10초 이하면 배경이 깜박거린다</li>
 						<li>문제는 배열에 입력해 놓으면 랜덤으로 출제된다</li>
@@ -65,24 +65,11 @@
 				width="350px" /></td>
 			<td>
 				<ul>
-					<li>조별 점수 확인 화면</li>
-					<ol>
-						<li>Quiz Game 이 끝나고 Score 에 마우스를 올려놓으면 각 팀별로 점수를 확인 할 수 있는
-							div 가 나타난다.</li>
-					</ol>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td><img
-				src="https://postfiles.pstatic.net/MjAxOTA1MTFfMTQg/MDAxNTU3NTY1NzMwMDIy.J61RvBP4PareY4GxZQ832mkc6ZBMxFtptJ-EItlJzDcg.JPb2Y9Xi8Q0SSXQ286SqJcepBVivZjYJgCdCTglYHPwg.PNG.soccerson/5.png?type=w773"
-				width="350px" /></td>
-			<td>
-				<ul>
-					<li>조별 점수 확인 화면</li>
-					<ol>
-						<li>Quiz Game 이 끝나고 Score 에 마우스를 올려놓으면 각 팀별로 점수를 확인 할 수 있는
-							div 가 나타난다.</li>
+					<li>타이머 종료 화면</li>
+					<ol type="1">
+						<li>타이머가 종료되면 'Next Team' 버튼을 제외한 나머지 버튼들이 모두 비활성화 된다</li>
+						<li>문제가 가려지며 'TIME OVER' 라는 문구가 뜬다</li>
+						<li>게임을 진행한 조의 점수가 점수판에 입력된다</li>
 					</ol>
 				</ul>
 			</td>
@@ -93,10 +80,9 @@
 				width="350px" /></td>
 			<td>
 				<ul>
-					<li>조별 점수 확인 화면</li>
-					<ol>
-						<li>Quiz Game 이 끝나고 Score 에 마우스를 올려놓으면 각 팀별로 점수를 확인 할 수 있는
-							div 가 나타난다.</li>
+					<li>점수 비교</li>
+					<ol type="1">
+						<li>점수판에 점수가 입력되면 다른 조들과 비교하여 높은 점수 순으로 정렬된다.</li>
 					</ol>
 				</ul>
 			</td>
